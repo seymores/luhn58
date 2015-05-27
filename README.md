@@ -3,6 +3,8 @@
 Text summarizer library based on Luhn '58 paper.
 Summarizer extracted from [suweet](https://github.com/bass3m/suweet).
 
+[![Clojars Project](http://clojars.org/luhn58/latest-version.svg)](http://clojars.org/luhn58)
+
 ## Usage
 
 TODO
