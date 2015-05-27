@@ -1,15 +1,13 @@
 (ns luhn58.summarize
-  (:require [clojure.string :as s :only [lower-case split-lines]])
-  (:require [opennlp.nlp :as nlp :only [make-sentence-detector make-tokenizer]])
-  (:require [stemmer.snowball :as snowball]))
+  (:require [clojure.string :as s :only [lower-case split-lines]]
+            [opennlp.nlp :as nlp :only [make-sentence-detector make-tokenizer]]
+            [luhn58.porter :as stemmer]))
 
 ;; Based on Luhn '58 paper
 
 ; only english at the moment
 (def get-sentences  (nlp/make-sentence-detector "models/en-sent.bin"))
 (def tokenize       (nlp/make-tokenizer "models/en-token.bin"))
-; stemmer see: http://snowball.tartarus.org/
-(def en-stemmer     (snowball/stemmer "english"))
 
 ;; could also go with the slightly less readable
 ;; ((comp :type :algo) cfg)
@@ -89,7 +87,7 @@
 (defn- stem-words
   "Given a coll of words, get the stems."
   [words]
-  (map en-stemmer words))
+  (map stemmer/stem words))
 
 (defn- filter-stop-words
   "Get rid of stop words from a given coll of words"
