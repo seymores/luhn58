@@ -8,6 +8,7 @@
 ; only english at the moment
 (def get-sentences  (nlp/make-sentence-detector "models/en-sent.bin"))
 (def tokenize       (nlp/make-tokenizer "models/en-token.bin"))
+(def stop-words     (into #{} (s/split-lines (slurp "models/english.txt"))))
 
 ;; could also go with the slightly less readable
 ;; ((comp :type :algo) cfg)
@@ -91,10 +92,8 @@
 
 (defn- filter-stop-words
   "Get rid of stop words from a given coll of words"
-  [cfg words]
-  (let [stop-words (into #{} (s/split-lines
-                               (slurp (:stop-words cfg))))]
-    (filter #(not (contains? stop-words %)) words)))
+  [words]
+  (filter #(not (contains? stop-words %)) words))
 
 ;; could use incanter, but this is simple enough
 (defn mean-frequencies
@@ -182,7 +181,7 @@
        s/lower-case
        tokenize
        filter-non-words
-       (filter-stop-words cfg)
+       filter-stop-words
        stem-words
        frequencies
        (sort-by val)
@@ -214,7 +213,7 @@
   ([text] (summarize text {:num-sentences 7
                            :algo {:type :luhn :params {:word-cluster-size 4}}
                            :score-algo {:type :freq :params {:freq-factor 0.5}}
-                           :stop-words "models/english.txt"}))
+                           }))
   ([text cfg] (vec (take (:num-sentences cfg) (->> cfg
                                                    (calc-sentences text)
                                                    (sort-by :score)
