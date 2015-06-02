@@ -1,8 +1,7 @@
 (ns luhn58.core
   (:require [luhn58.porter :as stem]
-            [luhn58.summarize :as summarize]))
+            [luhn58.summarize :as s]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn summarize
+  [text]
+  (s/summarize text))
