@@ -14,7 +14,9 @@ Summarizer extracted from [suweet](https://github.com/bass3m/suweet).
 ```
 
 ```clojure
+(require '[luhn58.core :refer :all])
 (summarize “Long text ...”)
+```
 
 ## License
 
