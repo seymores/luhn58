@@ -10,7 +10,7 @@ Summarizer extracted from [suweet](https://github.com/bass3m/suweet).
 ### Leiningen
 
 ```
-[textteaser-clj "0.1.2"]
+[seymores/luhn58 "0.1.1"]
 ```
 
 ```clojure
