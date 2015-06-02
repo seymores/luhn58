@@ -3,15 +3,16 @@
 Text summarizer library based on Luhn '58 paper.
 Summarizer extracted from [suweet](https://github.com/bass3m/suweet).
 
-[![Clojars Project](http://clojars.org/luhn58/latest-version.svg)](http://clojars.org/seymores/luhn58)
+[![Clojars Project](http://clojars.org/seymores/luhn58/latest-version.svg)](http://clojars.org/seymores/luhn58)
 
-## Usage
 
-### Leiningen
+### Install
 
 ```
 [seymores/luhn58 "0.1.1"]
 ```
+
+## Usage
 
 ```clojure
 (require '[luhn58.core :refer :all])
